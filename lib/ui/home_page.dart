@@ -36,59 +36,61 @@ class _HomePageState extends State<HomePage> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: Text('Simple Notification'),
+          title: const Text('Simple Notification'),
         ),
         body: Padding(
           padding: EdgeInsets.all(8.0),
           child: SingleChildScrollView(
             scrollDirection: Axis.vertical,
-            child: Column(
-              children: <Widget>[
-                CustomButton(
-                    text: 'Show plain notification with payload',
+            child: Center(
+              child: Column(
+                children: [
+                  CustomButton(
+                      text: 'Show plain notification with payload',
+                      onPressed: () async {
+                        await _notificationHelper
+                            .showNotification(flutterLocalNotificationsPlugin);
+                      }),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                      text:
+                          'Show plain notification that has no body with payload',
+                      onPressed: () async {
+                        await _notificationHelper.showNotificationsWithNoBody(
+                            flutterLocalNotificationsPlugin);
+                      }),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                      text: 'Show grouped notification [Android]',
+                      onPressed: () async {
+                        await _notificationHelper.showGroupNotifications(
+                            flutterLocalNotificationsPlugin);
+                      }),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                      text:
+                          'Show progress notification - updates every second [Android]',
+                      onPressed: () async {
+                        await _notificationHelper.showProgressNotification(
+                            flutterLocalNotificationsPlugin);
+                      }),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                      text: 'Show big picture notification [Android]',
+                      onPressed: () async {
+                        await _notificationHelper.showBigPictureNotification(
+                            flutterLocalNotificationsPlugin);
+                      }),
+                  const SizedBox(height: 10),
+                  CustomButton(
+                    text: 'Show notification with attachment [iOS]',
                     onPressed: () async {
-                      await _notificationHelper
-                          .showNotification(flutterLocalNotificationsPlugin);
-                    }),
-                const SizedBox(height: 10),
-                CustomButton(
-                    text:
-                        'Show plain notification that has no body with payload',
-                    onPressed: () async {
-                      await _notificationHelper.showNotificationsWithNoBody(
+                      await _notificationHelper.showNotificationWithAttachment(
                           flutterLocalNotificationsPlugin);
-                    }),
-                const SizedBox(height: 10),
-                CustomButton(
-                    text: 'Show grouped notification [Android]',
-                    onPressed: () async {
-                      await _notificationHelper.showGroupNotifications(
-                          flutterLocalNotificationsPlugin);
-                    }),
-                const SizedBox(height: 10),
-                CustomButton(
-                    text:
-                        'Show progress notification - updates every second [Android]',
-                    onPressed: () async {
-                      await _notificationHelper.showProgressNotification(
-                          flutterLocalNotificationsPlugin);
-                    }),
-                const SizedBox(height: 10),
-                CustomButton(
-                    text: 'Show big picture notification [Android]',
-                    onPressed: () async {
-                      await _notificationHelper.showBigPictureNotification(
-                          flutterLocalNotificationsPlugin);
-                    }),
-                const SizedBox(height: 10),
-                CustomButton(
-                  text: 'Show notification with attachment [iOS]',
-                  onPressed: () async {
-                    await _notificationHelper.showNotificationWithAttachment(
-                        flutterLocalNotificationsPlugin);
-                  },
-                )
-              ],
+                    },
+                  )
+                ],
+              ),
             ),
           ),
         ),
